@@ -11,12 +11,68 @@ import { MessageCircle, Mail, Phone, MapPin, Send, CheckCircle } from "lucide-re
 
 export function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Simulate form submission
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setSubmitError(null);
+    setFieldErrors({});
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    const payload = {
+      firstName: String(fd.get("firstName") ?? "").trim(),
+      lastName: String(fd.get("lastName") ?? "").trim(),
+      email: String(fd.get("email") ?? "").trim(),
+      phone: String(fd.get("phone") ?? "").trim(),
+      date: String(fd.get("date") ?? "").trim(),
+      guests: String(fd.get("guests") ?? "").trim(),
+      message: String(fd.get("message") ?? "").trim(),
+    };
+
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        let data: unknown = null;
+        try {
+          data = await res.json();
+        } catch {
+          // ignore
+        }
+
+        if (
+          data &&
+          typeof data === "object" &&
+          "fields" in data &&
+          data.fields &&
+          typeof (data as any).fields === "object"
+        ) {
+          setFieldErrors((data as any).fields as Record<string, string>);
+          setSubmitError("Controleer de velden en probeer opnieuw.");
+        } else {
+          setSubmitError("Versturen is mislukt. Probeer het opnieuw.");
+        }
+        return;
+      }
+
+      setIsSubmitted(true);
+      form.reset();
+      setFieldErrors({});
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch {
+      setSubmitError("Versturen is mislukt. Probeer het opnieuw.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -112,19 +168,27 @@ export function Contact() {
                     <Label htmlFor="firstName">Voornaam</Label>
                     <Input
                       id="firstName"
+                      name="firstName"
                       placeholder="Jullie voornamen"
                       required
                       className="bg-background"
                     />
+                    {fieldErrors.firstName ? (
+                      <p className="text-sm text-destructive">{fieldErrors.firstName}</p>
+                    ) : null}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="lastName">Achternaam</Label>
                     <Input
                       id="lastName"
+                      name="lastName"
                       placeholder="Achternaam"
                       required
                       className="bg-background"
                     />
+                    {fieldErrors.lastName ? (
+                      <p className="text-sm text-destructive">{fieldErrors.lastName}</p>
+                    ) : null}
                   </div>
                 </div>
 
@@ -132,36 +196,53 @@ export function Contact() {
                   <Label htmlFor="email">E-mailadres</Label>
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     placeholder="jullie@email.nl"
                     required
                     className="bg-background"
                   />
+                  {fieldErrors.email ? (
+                    <p className="text-sm text-destructive">{fieldErrors.email}</p>
+                  ) : null}
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="phone">Telefoonnummer</Label>
                   <Input
                     id="phone"
+                    name="phone"
                     type="tel"
                     placeholder="+31 6 12 34 56 78"
                     className="bg-background"
                   />
+                  {fieldErrors.phone ? (
+                    <p className="text-sm text-destructive">{fieldErrors.phone}</p>
+                  ) : null}
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="date">Datum bruiloft</Label>
-                    <Input id="date" type="date" required className="bg-background" />
+                    <Input id="date" name="date" type="date" required className="bg-background" />
+                    {fieldErrors.date ? (
+                      <p className="text-sm text-destructive">{fieldErrors.date}</p>
+                    ) : null}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="guests">Aantal gasten</Label>
                     <Input
                       id="guests"
+                      name="guests"
                       type="number"
+                      min={1}
+                      max={5000}
                       placeholder="Bijv. 200"
                       className="bg-background"
                     />
+                    {fieldErrors.guests ? (
+                      <p className="text-sm text-destructive">{fieldErrors.guests}</p>
+                    ) : null}
                   </div>
                 </div>
 
@@ -169,17 +250,26 @@ export function Contact() {
                   <Label htmlFor="message">Bericht</Label>
                   <Textarea
                     id="message"
+                    name="message"
                     placeholder="Vertel ons meer over jullie plannen..."
                     rows={4}
                     className="bg-background resize-none"
                   />
+                  {fieldErrors.message ? (
+                    <p className="text-sm text-destructive">{fieldErrors.message}</p>
+                  ) : null}
                 </div>
+
+                {submitError ? (
+                  <p className="text-sm text-destructive">{submitError}</p>
+                ) : null}
 
                 <Button
                   type="submit"
-                  className="w-full bg-foreground text-background hover:bg-foreground/90 py-6"
+                  disabled={isSubmitting}
+                  className="w-full bg-foreground text-background hover:bg-foreground/90 py-6 disabled:opacity-60"
                 >
-                  Verstuur Aanvraag
+                  {isSubmitting ? "Versturen..." : "Verstuur Aanvraag"}
                   <Send className="w-4 h-4 ml-2" />
                 </Button>
 

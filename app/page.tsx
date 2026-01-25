@@ -4,10 +4,10 @@ import { Services } from "@/components/services";
 import { WhyChooseUs } from "@/components/why-choose-us";
 import { HowItWorks } from "@/components/how-it-works";
 import { Gallery } from "@/components/gallery";
-import { InstagramFeed } from "@/components/instagram-feed";
 import { Packages } from "@/components/packages";
 import { Reviews } from "@/components/reviews";
 import { Contact } from "@/components/contact";
+import { FAQ } from "@/components/faq";
 import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 
@@ -20,10 +20,10 @@ export default function Home() {
       <WhyChooseUs />
       <HowItWorks />
       <Gallery />
-      <InstagramFeed />
       <Packages />
       <Reviews />
       <Contact />
+      <FAQ />
       <Footer />
       <WhatsAppButton />
     </main>

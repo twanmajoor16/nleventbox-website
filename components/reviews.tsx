@@ -5,29 +5,29 @@ const reviews = [
     name: "Fatima & Ahmed",
     location: "Amsterdam",
     rating: 5,
-    text: "De photobooth was het hoogtepunt van onze bruiloft! Alle gasten waren er enthousiast over. De kwaliteit van de foto's is geweldig en de begeleiding was super professioneel.",
-    date: "November 2024",
+    text: "De photobox was het hoogtepunt van ons event! Alle gasten waren er enthousiast over. De kwaliteit van de foto's die ze zelf konden maken is geweldig en de setup was super professioneel.",
+    date: "November 2025",
   },
   {
     name: "Sara & Mohammed",
     location: "Rotterdam",
     rating: 5,
-    text: "Wat een fantastische service! Ze begrijpen precies wat er nodig is voor een grote bruiloft. Alles was tot in de puntjes geregeld. Aanrader!",
-    date: "Oktober 2024",
+    text: "Wat een fantastische service! Ze begrijpen precies wat er nodig is voor een groot event. Alles was tot in de puntjes geregeld. Aanrader!",
+    date: "Oktober 2025",
   },
   {
     name: "Aisha & Youssef",
     location: "Den Haag",
     rating: 5,
-    text: "Wij waren zo blij met de photobooth! De props waren stijlvol en passend. Onze gasten hebben zich geweldig vermaakt en de foto's zijn prachtige herinneringen.",
-    date: "September 2024",
+    text: "Wij waren zo blij met de photobox! De props waren stijlvol en passend. Onze gasten hebben zich geweldig vermaakt en de foto's die ze zelf hebben gemaakt zijn prachtige herinneringen.",
+    date: "September 2025",
   },
   {
     name: "Nadia & Omar",
     location: "Utrecht",
     rating: 5,
     text: "Heel professioneel team dat goed rekening houdt met onze wensen. De digitale galerij was super handig - alle gasten konden direct hun foto's delen.",
-    date: "Augustus 2024",
+    date: "Augustus 2025",
   },
 ];
 
@@ -41,10 +41,10 @@ export function Reviews() {
             Reviews
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground text-balance">
-            Wat bruidsparen over ons zeggen
+            Wat klanten over ons zeggen
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Wij zijn trots op de vele positieve reacties die wij ontvangen van tevreden koppels.
+            Wij zijn trots op de vele positieve reacties die wij ontvangen van tevreden klanten.
           </p>
         </div>
 
@@ -77,19 +77,6 @@ export function Reviews() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Google Reviews Badge */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-3 bg-card px-6 py-4 rounded-full border border-border">
-            <div className="flex gap-0.5">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-gold text-gold" />
-              ))}
-            </div>
-            <span className="text-foreground font-medium">5.0 op Google Reviews</span>
-            <span className="text-muted-foreground">(120+ reviews)</span>
-          </div>
         </div>
       </div>
     </section>

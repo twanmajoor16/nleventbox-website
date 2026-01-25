@@ -1,57 +1,63 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
+import { Check, AlertCircle, Lightbulb, PartyPopper, Sparkles, Gem, MapPin, Clock, Palette, Diamond } from "lucide-react";
 
 const packages = [
   {
-    name: "Basis",
-    price: "549",
-    duration: "3 uur",
-    description: "Perfect voor kleinere feesten en intimere vieringen.",
+    name: "Pakket 1",
+    subtitle: "Standaard",
+    icon: PartyPopper,
+    price: "500",
+    duration: "Max 4 uur",
+    description: "Keuze uit wit of zwart frame, inclusief ballonnen. Ideaal voor kleine feesten of korte events.",
     features: [
-      "3 uur photobooth verhuur",
-      "Professionele belichting",
-      "Digitale foto galerij",
-      "Basis props collectie",
-      "1 ervaren begeleider",
-      "Onbeperkt foto's maken",
+      "Basis template, nette uitstraling",
     ],
     popular: false,
   },
   {
-    name: "Premium",
-    price: "749",
-    duration: "5 uur",
-    description: "Onze populairste keuze voor bruiloften en verjaardagen.",
+    name: "Pakket 2",
+    subtitle: "Meest populair",
+    icon: Sparkles,
+    price: "650",
+    duration: "Max 5 uur",
+    description: "Alles uit Pakket 1, plus persoonlijke tekst of logo op de Magazine Cover Box. Perfect voor wie iets extra's wil.",
     features: [
-      "5 uur photobooth verhuur",
-      "Professionele studio belichting",
-      "Digitale foto galerij + download",
-      "Premium props collectie",
-      "2 ervaren begeleiders",
-      "Onbeperkt foto's maken",
-      "Gepersonaliseerde achtergrond",
-      "WhatsApp delen voor gasten",
+      "Personalisatie naar thema of stijl",
+      "Mogelijk om de titel aan te passen, plus maximaal 2 kleine details zoals naam en datum.",
     ],
     popular: true,
   },
   {
-    name: "Luxe",
-    price: "999",
-    duration: "Hele avond",
-    description: "De ultieme ervaring voor jullie speciale dag.",
+    name: "Pakket 3",
+    subtitle: "Op maat",
+    icon: Gem,
+    price: "850",
+    duration: "Hele dag",
+    description: "Volledig gepersonaliseerde box, naar wens met alle extra materialen voor de hele avond. Geschikt voor bruiloften, bedrijfsevents of exclusieve feesten.",
     features: [
-      "Hele avond photobooth verhuur",
-      "Premium studio belichting",
-      "Digitale foto galerij + USB",
-      "Premium props collectie",
-      "2 ervaren begeleiders",
-      "Onbeperkt foto's maken",
-      "Custom achtergrond ontwerp",
-      "WhatsApp + e-mail delen",
-      "Fysiek fotoalbum (20 pagina's)",
+      "Op maat gemaakt, premium ervaring",
     ],
     popular: false,
+  },
+];
+
+const extraDecorations = [
+  {
+    name: "Golden Stanchions met rode touwen",
+    price: "50",
+  },
+  {
+    name: "Witte rozen arrangement",
+    price: "30",
+  },
+  {
+    name: "Rode loper",
+    price: "30",
+  },
+  {
+    name: "Rode rozenblaadjes",
+    price: "20",
   },
 ];
 
@@ -68,8 +74,7 @@ export function Packages() {
             Transparante prijzen, geen verrassingen
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Kies het pakket dat het beste bij jullie past. Alle prijzen zijn inclusief BTW, 
-            levering en installatie binnen heel Nederland.
+            Kies het pakket dat het beste bij jullie past. Alle prijzen zijn exclusief reiskosten.
           </p>
         </div>
 
@@ -84,32 +89,43 @@ export function Packages() {
             >
               {pkg.popular && (
                 <div className="absolute top-0 left-0 right-0 bg-gold text-foreground text-sm font-medium text-center py-2">
-                  Meest Gekozen
+                  Meest Populair
                 </div>
               )}
 
               <div className={`p-6 md:p-8 ${pkg.popular ? "pt-12 md:pt-14" : ""}`}>
-                <h3 className="font-serif text-2xl font-semibold text-foreground">{pkg.name}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{pkg.duration}</p>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <pkg.icon className="w-5 h-5 text-gold" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-2xl font-semibold text-foreground">{pkg.name}</h3>
+                    <p className="text-sm text-muted-foreground">- {pkg.subtitle}</p>
+                  </div>
+                </div>
 
                 <div className="mt-6">
                   <span className="font-serif text-4xl md:text-5xl font-semibold text-foreground">
                     €{pkg.price}
                   </span>
+                  <span className="text-muted-foreground ml-2">(excl. km)</span>
                 </div>
 
-                <p className="text-muted-foreground mt-4">{pkg.description}</p>
+                <p className="text-sm text-muted-foreground mt-2 mb-4">{pkg.duration}</p>
 
-                <ul className="mt-8 space-y-4">
-                  {pkg.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-3 h-3 text-gold" />
-                      </div>
-                      <span className="text-foreground">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-foreground leading-relaxed mb-6">{pkg.description}</p>
+
+                <div className="space-y-3">
+                  <p className="font-semibold text-foreground text-sm">Extra's:</p>
+                  <ul className="space-y-2">
+                    {pkg.features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <div className="w-2 h-2 rounded-full bg-gold flex-shrink-0 mt-1.5" />
+                        <span className="text-sm text-foreground leading-relaxed">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
                 <Button
                   asChild
@@ -126,14 +142,108 @@ export function Packages() {
           ))}
         </div>
 
-        {/* Custom Package Note */}
-        <div className="mt-12 text-center">
-          <p className="text-muted-foreground">
-            Iets anders in gedachten?{" "}
-            <Link href="#contact" className="text-foreground underline hover:text-gold transition-colors">
-              Neem contact op voor een pakket op maat
-            </Link>
-          </p>
+        {/* Important Notes */}
+        <div className="mt-12 space-y-4">
+          <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
+            <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <MapPin className="w-5 h-5 text-gold" />
+            </div>
+            <div>
+              <p className="text-foreground">
+                <span className="font-semibold">Reiskosten:</span> €0,35 per kilometer (heen en terug).
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border">
+            <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <Lightbulb className="w-5 h-5 text-gold" />
+            </div>
+            <div>
+              <p className="text-foreground">
+                <span className="font-semibold">Let op:</span> Niets zo jammer als afbouw midden in het feest!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Extra Decorations */}
+        <div className="mt-16 md:mt-20">
+          <div className="text-center mb-8">
+            <h3 className="font-serif text-2xl md:text-3xl font-semibold text-foreground">
+              Tarieven extra decoratie
+            </h3>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {extraDecorations.map((item) => (
+              <div key={item.name} className="bg-card p-6 rounded-xl border border-border text-center">
+                <p className="text-foreground font-medium mb-3">{item.name}</p>
+                <p className="font-serif text-2xl font-semibold text-foreground">€{item.price},-</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Price Factors */}
+        <div className="mt-16 md:mt-20 bg-card rounded-2xl p-8 md:p-12 border border-border">
+          <h3 className="font-serif text-2xl md:text-3xl font-semibold text-foreground mb-8">
+            Waar hangt de prijs vanaf?
+          </h3>
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-5 h-5 text-gold" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Locatie van het event:</h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  De prijs hangt af van waar jouw event plaatsvindt. We leveren door heel Nederland. Voor locaties buiten onze regio rekenen we een reiskost van €0,35 per kilometer (heen en terug).
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Clock className="w-5 h-5 text-gold" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Aantal uren:</h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  Hoe langer de photobox actief is op jouw event, hoe meer tijd we reserveren voor setup en opbouw.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Palette className="w-5 h-5 text-gold" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Personalisatie:</h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  Wil je een ontwerp op maat met jouw logo, kleuren of thema? Dat maakt jouw cover uniek en volledig afgestemd op jouw event.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Diamond className="w-5 h-5 text-gold" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Extra opties:</h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  Maak het compleet met extra's zoals een rode loper, VIP-paaltjes of bloemstukken.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 p-6 bg-secondary rounded-xl">
+            <p className="text-foreground leading-relaxed">
+              De totale prijs hangt af van jouw wensen, duur, locatie en eventuele personalisatie. Vraag vrijblijvend een offerte aan voor een exacte prijs op maat.
+            </p>
+          </div>
         </div>
       </div>
     </section>

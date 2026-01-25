@@ -95,7 +95,7 @@ export function Contact() {
             {/* Contact Methods */}
             <div className="mt-10 space-y-6">
               <a
-                href="https://wa.me/31612345678"
+                href="https://wa.me/31639105393"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border hover:border-gold/30 transition-colors group"
@@ -127,7 +127,8 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="font-semibold text-foreground">Telefoon</p>
-                  <p className="text-sm text-muted-foreground">+31 6 12 34 56 78</p>
+                  <p className="text-sm text-muted-foreground">+31 6 39 10 53 93</p>
+                  <p className="text-sm text-muted-foreground">+31 6 18 59 62 06</p>
                 </div>
               </div>
 
@@ -213,7 +214,7 @@ export function Contact() {
                     id="phone"
                     name="phone"
                     type="tel"
-                    placeholder="+31 6 12 34 56 78"
+                    placeholder="+31 6 39 10 53 93"
                     className="bg-background"
                   />
                   {fieldErrors.phone ? (
@@ -223,7 +224,7 @@ export function Contact() {
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="date">Datum bruiloft</Label>
+                    <Label htmlFor="date">Datum event</Label>
                     <Input id="date" name="date" type="date" required className="bg-background" />
                     {fieldErrors.date ? (
                       <p className="text-sm text-destructive">{fieldErrors.date}</p>

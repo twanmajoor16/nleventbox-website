@@ -3,17 +3,17 @@ import Image from "next/image";
 const galleryImages = [
   {
     src: "/images/IMG_2782.jpg",
-    alt: "Magazine-stijl photobooth",
+    alt: "Magazine-stijl photobox",
     span: "col-span-2 row-span-2",
   },
   {
     src: "/images/IMG_4401.jpg",
-    alt: "Photobooth ervaring",
+    alt: "Photobox ervaring",
     span: "col-span-1 row-span-2",
   },
   {
     src: "/images/IMG_3419.jpg",
-    alt: "Photobooth setup",
+    alt: "Photobox setup",
     span: "col-span-1 row-span-1",
   },
 ];
@@ -28,10 +28,10 @@ export function Gallery() {
             Onze Portfolio
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground text-balance">
-            Momenten die wij hebben vastgelegd
+            Momenten die gasten hebben vastgelegd
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Een kleine selectie van de prachtige bruiloften, verjaardagen en feesten waar wij onderdeel van mochten zijn.
+            Een kleine selectie van de prachtige foto's die gasten hebben gemaakt tijdens bruiloften, verjaardagen en feesten waar onze photobox onderdeel van was.
           </p>
         </div>
 

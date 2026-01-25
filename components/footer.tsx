@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Facebook } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 export function Footer() {
   return (
@@ -14,28 +14,19 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 text-background/70 max-w-md leading-relaxed">
-              Magazine-stijl photobooth verhuur voor bruiloften en grote feesten in heel Nederland. 
+              Magazine-stijl photobox verhuur voor bruiloften en grote feesten in heel Nederland. 
               Maak jullie speciale dag onvergetelijk met prachtige herinneringen.
             </p>
             {/* Social Links */}
             <div className="flex gap-4 mt-6">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/nleventbox/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-gold hover:text-foreground transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-gold hover:text-foreground transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -68,8 +59,13 @@ export function Footer() {
             <h4 className="font-semibold text-lg mb-4">Contact</h4>
             <ul className="space-y-3 text-background/70">
               <li>
-                <a href="tel:+31612345678" className="hover:text-gold transition-colors">
-                  +31 6 12 34 56 78
+                <a href="tel:+31639105393" className="hover:text-gold transition-colors">
+                  +31 6 39 10 53 93
+                </a>
+              </li>
+              <li>
+                <a href="tel:+31618596206" className="hover:text-gold transition-colors">
+                  +31 6 18 59 62 06
                 </a>
               </li>
               <li>

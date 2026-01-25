@@ -17,13 +17,13 @@ const reasons = [
     icon: Shield,
     title: "Betrouwbare Service",
     description:
-      "Van tijdige levering tot professionele begeleiding - op ons kun je rekenen.",
+      "Van tijdige levering tot professionele setup en duidelijke instructies - op ons kun je rekenen.",
   },
   {
     icon: Star,
     title: "Hoogwaardige Kwaliteit",
     description:
-      "Magazine-kwaliteit foto's waar jullie gasten nog jaren naar zullen kijken.",
+      "Jullie gasten kunnen zelf prachtige magazine-stijl foto's maken waar ze nog jaren naar zullen kijken.",
   },
 ];
 
@@ -60,7 +60,7 @@ export function WhyChooseUs() {
               Waarom klanten voor ons kiezen
             </h2>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Al meer dan 8 jaar maken wij bruiloften, verjaardagen en feesten nog specialer met onze photobooths. 
+              Al meer dan 8 jaar maken wij bruiloften, verjaardagen en feesten nog specialer met onze photoboxen. 
               Wij begrijpen dat jullie dag perfect moet zijn.
             </p>
 

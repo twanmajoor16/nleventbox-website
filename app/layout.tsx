@@ -16,8 +16,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'NL Eventbox | Magazine Photobooth Verhuur voor Bruiloften',
-  description: 'Verhuur van magazine-stijl photobooths voor bruiloften en grote feesten in Nederland. Complete service van A tot Z.',
+  title: 'NL Eventbox | Magazine Photobox Verhuur voor Events',
+  description: 'Verhuur van magazine-stijl photoboxen voor events en grote feesten in Nederland. Complete service van A tot Z.',
   generator: 'v0.app',
 }
 

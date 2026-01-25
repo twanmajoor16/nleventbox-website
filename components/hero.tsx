@@ -17,13 +17,13 @@ export function Hero() {
           {/* Text Content */}
           <div className="text-center lg:text-left">
             <p className="text-sm md:text-base font-medium text-gold uppercase tracking-widest mb-4">
-              Photobooth Verhuur
+              Photobox Verhuur
             </p>
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground leading-tight text-balance">
               Maak jullie feest onvergetelijk
             </h1>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Magazine-stijl photobooth verhuur voor bruiloften, verjaardagen en grote feesten. 
+              Magazine-stijl photobox verhuur voor bruiloften, verjaardagen en grote feesten. 
               Complete service van A tot Z, zodat jullie kunnen genieten van jullie speciale dag.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -51,12 +51,7 @@ export function Hero() {
             <div className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-8">
               <div className="text-center lg:text-left">
                 <p className="font-serif text-3xl md:text-4xl font-semibold text-foreground">500+</p>
-                <p className="text-sm text-muted-foreground">Tevreden Koppels</p>
-              </div>
-              <div className="w-px h-12 bg-border hidden sm:block" />
-              <div className="text-center lg:text-left">
-                <p className="font-serif text-3xl md:text-4xl font-semibold text-foreground">5.0</p>
-                <p className="text-sm text-muted-foreground">Google Reviews</p>
+                <p className="text-sm text-muted-foreground">Tevreden Klanten</p>
               </div>
               <div className="w-px h-12 bg-border hidden sm:block" />
               <div className="text-center lg:text-left">
@@ -73,7 +68,7 @@ export function Hero() {
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/hero-photobooth.jpg"
-                  alt="Elegante photobooth setup op een feest"
+                  alt="Elegante photobox setup op een feest"
                   fill
                   className="object-cover"
                   priority

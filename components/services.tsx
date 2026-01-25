@@ -3,9 +3,9 @@ import { Camera, Truck, Users, ImageIcon, Clock, Sparkles } from "lucide-react";
 const services = [
   {
     icon: Camera,
-    title: "Magazine Photobooth",
+    title: "Magazine Photobox",
     description:
-      "Professionele studio-kwaliteit photobooth met magazine-cover stijl foto's die jullie gasten nooit zullen vergeten.",
+      "Professionele studio-kwaliteit photobox met magazine-cover stijl. Jullie gasten kunnen zelf prachtige foto's maken die ze nooit zullen vergeten.",
   },
   {
     icon: Truck,
@@ -15,15 +15,15 @@ const services = [
   },
   {
     icon: Users,
-    title: "Professionele Begeleiding",
+    title: "Setup & Instructies",
     description:
-      "Onze ervaren medewerkers begeleiden jullie gasten en zorgen voor een vlekkeloze ervaring.",
+      "Wij zetten de photobox op en geven duidelijke instructies. Jullie gasten kunnen daarna zelfstandig aan de slag.",
   },
   {
     icon: ImageIcon,
-    title: "Direct Digitale Foto's",
+    title: "Zelf Foto's Maken",
     description:
-      "Alle gasten ontvangen hun foto's direct digitaal via QR-code. Delen was nog nooit zo makkelijk.",
+      "Gasten kunnen zelf onbeperkt foto's maken met de photobox. Alle foto's kunnen direct worden gedeeld via QR-code.",
   },
   {
     icon: Clock,
@@ -49,11 +49,11 @@ export function Services() {
             Wat Verhuren Wij
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground text-balance">
-            Complete photobooth ervaring van A tot Z
+            Complete photobox ervaring van A tot Z
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             Wij nemen alles uit handen zodat jullie kunnen genieten van jullie speciale dag. 
-            Van levering tot begeleiding - alles zit inbegrepen.
+            Van levering tot setup en instructies - alles zit inbegrepen.
           </p>
         </div>
 
@@ -73,32 +73,6 @@ export function Services() {
               <p className="text-muted-foreground leading-relaxed">{service.description}</p>
             </div>
           ))}
-        </div>
-
-        {/* What's Included Banner */}
-        <div className="mt-16 md:mt-20 bg-card rounded-2xl p-8 md:p-12 border border-border">
-          <div className="text-center mb-8">
-            <h3 className="font-serif text-2xl md:text-3xl font-semibold text-foreground">
-              Wat zit er allemaal bij inbegrepen?
-            </h3>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              "Photobooth apparatuur",
-              "Professionele belichting",
-              "Elegante achtergrond",
-              "Premium foto kwaliteit",
-              "Onbeperkt foto's maken",
-              "Digitale galerij voor gasten",
-              "Props collectie",
-              "Ervaren begeleider",
-            ].map((item) => (
-              <div key={item} className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gold flex-shrink-0" />
-                <span className="text-foreground">{item}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

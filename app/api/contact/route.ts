@@ -7,8 +7,14 @@ type ContactPayload = {
   lastName: string;
   email: string;
   phone?: string;
+  eventType: string;
   date: string;
-  guests?: string;
+  hours?: string;
+  address: string;
+  houseNumber: string;
+  province: string;
+  startTime: string;
+  extraDecorations?: string[];
   message?: string;
 };
 
@@ -62,8 +68,14 @@ export async function POST(req: NextRequest) {
     const lastName = (payload.lastName ?? "").trim();
     const email = (payload.email ?? "").trim();
     const phone = (payload.phone ?? "").trim();
+    const eventType = (payload.eventType ?? "").trim();
     const date = (payload.date ?? "").trim();
-    const guests = (payload.guests ?? "").trim();
+    const hours = (payload.hours ?? "").trim();
+    const address = (payload.address ?? "").trim();
+    const houseNumber = (payload.houseNumber ?? "").trim();
+    const province = (payload.province ?? "").trim();
+    const startTime = (payload.startTime ?? "").trim();
+    const extraDecorations = payload.extraDecorations ?? [];
     const message = (payload.message ?? "").trim();
 
     const fieldErrors: Record<string, string> = {};
@@ -77,16 +89,27 @@ export async function POST(req: NextRequest) {
     if (!email) fieldErrors.email = "E-mailadres is verplicht.";
     else if (!isValidEmail(email)) fieldErrors.email = "E-mailadres lijkt niet geldig.";
 
+    if (!eventType) fieldErrors.eventType = "Type event is verplicht.";
+
     if (!date) fieldErrors.date = "Datum is verplicht.";
     else if (!isTodayOrFuture(date)) fieldErrors.date = "Datum moet vandaag of in de toekomst zijn.";
 
-    if (phone && !isValidPhone(phone)) fieldErrors.phone = "Telefoonnummer lijkt niet geldig.";
+    if (!startTime) fieldErrors.startTime = "Starttijd is verplicht.";
 
-    if (guests) {
-      const n = Number(guests);
-      if (!Number.isFinite(n) || !Number.isInteger(n)) fieldErrors.guests = "Aantal gasten moet een geheel getal zijn.";
-      else if (n < 1 || n > 5000) fieldErrors.guests = "Aantal gasten moet tussen 1 en 5000 liggen.";
+    if (!hours) fieldErrors.hours = "Aantal uur is verplicht.";
+    else {
+      const n = Number(hours);
+      if (!Number.isFinite(n) || !Number.isInteger(n)) fieldErrors.hours = "Aantal uur moet een geheel getal zijn.";
+      else if (n < 1 || n > 24) fieldErrors.hours = "Aantal uur moet tussen 1 en 24 liggen.";
     }
+
+    if (!address) fieldErrors.address = "Adres is verplicht.";
+
+    if (!houseNumber) fieldErrors.houseNumber = "Huisnummer is verplicht.";
+
+    if (!province) fieldErrors.province = "Provincie is verplicht.";
+
+    if (phone && !isValidPhone(phone)) fieldErrors.phone = "Telefoonnummer lijkt niet geldig.";
 
     // If you want to enforce a minimum message length, do it here.
     if (message.length > 5000) fieldErrors.message = "Bericht is te lang (max 5000 tekens).";
@@ -111,8 +134,14 @@ export async function POST(req: NextRequest) {
       lastName,
       email,
       phone: phone || undefined,
+      eventType,
       date,
-      guests: guests || undefined,
+      hours: hours || undefined,
+      address,
+      houseNumber,
+      province,
+      startTime,
+      extraDecorations: extraDecorations.length > 0 ? extraDecorations : undefined,
       message: message || undefined,
       meta: {
         ip,

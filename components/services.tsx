@@ -23,7 +23,7 @@ const services = [
     icon: ImageIcon,
     title: "Zelf Foto's Maken",
     description:
-      "Gasten kunnen zelf onbeperkt foto's maken met de photobox. Alle foto's kunnen direct worden gedeeld via QR-code.",
+      "Gasten kunnen zelf onbeperkt foto's maken met de photobox met hun eigen telefoon.",
   },
   {
     icon: Clock,

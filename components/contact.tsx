@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { MessageCircle, Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
 
 export function Contact() {
@@ -14,6 +16,8 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [eventType, setEventType] = useState<string>("");
+  const [province, setProvince] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,13 +27,25 @@ export function Contact() {
     const form = e.currentTarget;
     const fd = new FormData(form);
 
+    const extraDecorations = [];
+    if (fd.get("decoration-stanchions") === "on") extraDecorations.push("Golden Stanchions met rode touwen (€50)");
+    if (fd.get("decoration-roses") === "on") extraDecorations.push("Witte rozen arrangement (€30)");
+    if (fd.get("decoration-carpet") === "on") extraDecorations.push("Rode loper (€30)");
+    if (fd.get("decoration-petals") === "on") extraDecorations.push("Rode rozenblaadjes (€20)");
+
     const payload = {
       firstName: String(fd.get("firstName") ?? "").trim(),
       lastName: String(fd.get("lastName") ?? "").trim(),
       email: String(fd.get("email") ?? "").trim(),
       phone: String(fd.get("phone") ?? "").trim(),
+      eventType: eventType || String(fd.get("eventType") ?? "").trim(),
       date: String(fd.get("date") ?? "").trim(),
-      guests: String(fd.get("guests") ?? "").trim(),
+      hours: String(fd.get("hours") ?? "").trim(),
+      address: String(fd.get("address") ?? "").trim(),
+      houseNumber: String(fd.get("houseNumber") ?? "").trim(),
+      province: province || String(fd.get("province") ?? "").trim(),
+      startTime: String(fd.get("startTime") ?? "").trim(),
+      extraDecorations: extraDecorations,
       message: String(fd.get("message") ?? "").trim(),
     };
 
@@ -67,6 +83,8 @@ export function Contact() {
       setIsSubmitted(true);
       form.reset();
       setFieldErrors({});
+      setEventType("");
+      setProvince("");
       setTimeout(() => setIsSubmitted(false), 3000);
     } catch {
       setSubmitError("Versturen is mislukt. Probeer het opnieuw.");
@@ -222,6 +240,26 @@ export function Contact() {
                   ) : null}
                 </div>
 
+                <div className="space-y-2">
+                  <Label htmlFor="eventType">Type event</Label>
+                  <Select value={eventType} onValueChange={setEventType} required>
+                    <SelectTrigger className="w-full bg-background">
+                      <SelectValue placeholder="Selecteer type event" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="zakelijk">Zakelijk event</SelectItem>
+                      <SelectItem value="bruiloft">Bruiloft</SelectItem>
+                      <SelectItem value="verjaardag">Verjaardag</SelectItem>
+                      <SelectItem value="baby-shower">Baby Shower</SelectItem>
+                      <SelectItem value="overig">Overig</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <input type="hidden" name="eventType" value={eventType} />
+                  {fieldErrors.eventType ? (
+                    <p className="text-sm text-destructive">{fieldErrors.eventType}</p>
+                  ) : null}
+                </div>
+
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="date">Datum event</Label>
@@ -231,19 +269,126 @@ export function Contact() {
                     ) : null}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="guests">Aantal gasten</Label>
+                    <Label htmlFor="startTime">Starttijd feest</Label>
+                    <Input id="startTime" name="startTime" type="time" required className="bg-background" />
+                    {fieldErrors.startTime ? (
+                      <p className="text-sm text-destructive">{fieldErrors.startTime}</p>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="hours">Aantal uur</Label>
+                  <Input
+                    id="hours"
+                    name="hours"
+                    type="number"
+                    min={1}
+                    max={24}
+                    placeholder="Bijv. 4"
+                    required
+                    className="bg-background"
+                  />
+                  {fieldErrors.hours ? (
+                    <p className="text-sm text-destructive">{fieldErrors.hours}</p>
+                  ) : null}
+                </div>
+
+                <div className="grid sm:grid-cols-3 gap-6">
+                  <div className="space-y-2 sm:col-span-2">
+                    <Label htmlFor="address">Adres</Label>
                     <Input
-                      id="guests"
-                      name="guests"
-                      type="number"
-                      min={1}
-                      max={5000}
-                      placeholder="Bijv. 200"
+                      id="address"
+                      name="address"
+                      placeholder="Straatnaam"
+                      required
                       className="bg-background"
                     />
-                    {fieldErrors.guests ? (
-                      <p className="text-sm text-destructive">{fieldErrors.guests}</p>
+                    {fieldErrors.address ? (
+                      <p className="text-sm text-destructive">{fieldErrors.address}</p>
                     ) : null}
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="houseNumber">Huisnummer</Label>
+                    <Input
+                      id="houseNumber"
+                      name="houseNumber"
+                      placeholder="123"
+                      required
+                      className="bg-background"
+                    />
+                    {fieldErrors.houseNumber ? (
+                      <p className="text-sm text-destructive">{fieldErrors.houseNumber}</p>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="province">Provincie</Label>
+                  <Select value={province} onValueChange={setProvince} required>
+                    <SelectTrigger className="w-full bg-background">
+                      <SelectValue placeholder="Selecteer provincie" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="drenthe">Drenthe</SelectItem>
+                      <SelectItem value="flevoland">Flevoland</SelectItem>
+                      <SelectItem value="friesland">Friesland</SelectItem>
+                      <SelectItem value="gelderland">Gelderland</SelectItem>
+                      <SelectItem value="groningen">Groningen</SelectItem>
+                      <SelectItem value="limburg">Limburg</SelectItem>
+                      <SelectItem value="noord-brabant">Noord-Brabant</SelectItem>
+                      <SelectItem value="noord-holland">Noord-Holland</SelectItem>
+                      <SelectItem value="overijssel">Overijssel</SelectItem>
+                      <SelectItem value="utrecht">Utrecht</SelectItem>
+                      <SelectItem value="zeeland">Zeeland</SelectItem>
+                      <SelectItem value="zuid-holland">Zuid-Holland</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <input type="hidden" name="province" value={province} />
+                  {fieldErrors.province ? (
+                    <p className="text-sm text-destructive">{fieldErrors.province}</p>
+                  ) : null}
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Extra decoratie (optioneel)</Label>
+                  <div className="space-y-3 p-4 bg-background/50 rounded-lg border border-border">
+                    <div className="flex items-start gap-3">
+                      <Checkbox id="decoration-stanchions" name="decoration-stanchions" />
+                      <div className="flex-1">
+                        <Label htmlFor="decoration-stanchions" className="cursor-pointer font-medium text-foreground">
+                          Golden Stanchions met rode touwen
+                        </Label>
+                        <p className="text-sm text-muted-foreground">€50,-</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Checkbox id="decoration-roses" name="decoration-roses" />
+                      <div className="flex-1">
+                        <Label htmlFor="decoration-roses" className="cursor-pointer font-medium text-foreground">
+                          Witte rozen arrangement
+                        </Label>
+                        <p className="text-sm text-muted-foreground">€30,-</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Checkbox id="decoration-carpet" name="decoration-carpet" />
+                      <div className="flex-1">
+                        <Label htmlFor="decoration-carpet" className="cursor-pointer font-medium text-foreground">
+                          Rode loper
+                        </Label>
+                        <p className="text-sm text-muted-foreground">€30,-</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Checkbox id="decoration-petals" name="decoration-petals" />
+                      <div className="flex-1">
+                        <Label htmlFor="decoration-petals" className="cursor-pointer font-medium text-foreground">
+                          Rode rozenblaadjes
+                        </Label>
+                        <p className="text-sm text-muted-foreground">€20,-</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

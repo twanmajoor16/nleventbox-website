@@ -60,7 +60,7 @@ export function WhyChooseUs() {
               Waarom klanten voor ons kiezen
             </h2>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Al meer dan 8 jaar maken wij bruiloften, verjaardagen en feesten nog specialer met onze photoboxen. 
+              Al meer dan 3 jaar maken wij bruiloften, verjaardagen en feesten nog specialer met onze photoboxen. 
               Wij begrijpen dat jullie dag perfect moet zijn.
             </p>
 

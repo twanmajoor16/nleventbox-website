@@ -55,7 +55,7 @@ export function Hero() {
               </div>
               <div className="w-px h-12 bg-border hidden sm:block" />
               <div className="text-center lg:text-left">
-                <p className="font-serif text-3xl md:text-4xl font-semibold text-foreground">8+</p>
+                <p className="font-serif text-3xl md:text-4xl font-semibold text-foreground">3+</p>
                 <p className="text-sm text-muted-foreground">Jaar Ervaring</p>
               </div>
             </div>

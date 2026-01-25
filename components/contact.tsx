@@ -32,6 +32,7 @@ export function Contact() {
     if (fd.get("decoration-roses") === "on") extraDecorations.push("Witte rozen arrangement (€30)");
     if (fd.get("decoration-carpet") === "on") extraDecorations.push("Rode loper (€30)");
     if (fd.get("decoration-petals") === "on") extraDecorations.push("Rode rozenblaadjes (€20)");
+    if (fd.get("decoration-balloons") === "on") extraDecorations.push("Ballonnen");
 
     const payload = {
       firstName: String(fd.get("firstName") ?? "").trim(),
@@ -342,6 +343,7 @@ export function Contact() {
                       <SelectItem value="utrecht">Utrecht</SelectItem>
                       <SelectItem value="zeeland">Zeeland</SelectItem>
                       <SelectItem value="zuid-holland">Zuid-Holland</SelectItem>
+                      <SelectItem value="belgie">België</SelectItem>
                     </SelectContent>
                   </Select>
                   <input type="hidden" name="province" value={province} />
@@ -387,6 +389,14 @@ export function Contact() {
                           Rode rozenblaadjes
                         </Label>
                         <p className="text-sm text-muted-foreground">€20,-</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Checkbox id="decoration-balloons" name="decoration-balloons" />
+                      <div className="flex-1">
+                        <Label htmlFor="decoration-balloons" className="cursor-pointer font-medium text-foreground">
+                          Ballonnen
+                        </Label>
                       </div>
                     </div>
                   </div>

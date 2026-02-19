@@ -1,18 +1,18 @@
 "use client";
 
-import React from "react"
-
+import React from "react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { MessageCircle, Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import { MessageCircle, Mail, Phone, MapPin, Send } from "lucide-react";
 
 export function Contact() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
@@ -81,12 +81,11 @@ export function Contact() {
         return;
       }
 
-      setIsSubmitted(true);
       form.reset();
       setFieldErrors({});
       setEventType("");
       setProvince("");
-      setTimeout(() => setIsSubmitted(false), 3000);
+      router.push("/bedankt-voor-uw-aanvraag");
     } catch {
       setSubmitError("Versturen is mislukt. Probeer het opnieuw.");
     } finally {
@@ -169,20 +168,7 @@ export function Contact() {
               Vraag een offerte aan
             </h3>
 
-            {isSubmitted ? (
-              <div className="flex flex-col items-center justify-center py-12 text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                  <CheckCircle className="w-8 h-8 text-green-600" />
-                </div>
-                <h4 className="font-serif text-xl font-semibold text-foreground mb-2">
-                  Bedankt voor je bericht!
-                </h4>
-                <p className="text-muted-foreground">
-                  Wij nemen binnen 24 uur contact met je op.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">Voornaam</Label>
@@ -433,7 +419,6 @@ export function Contact() {
                   Door te versturen ga je akkoord met onze privacyvoorwaarden.
                 </p>
               </form>
-            )}
           </div>
         </div>
       </div>

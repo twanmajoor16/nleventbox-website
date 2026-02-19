@@ -36,11 +36,11 @@ export function Footer() {
             <h4 className="font-semibold text-lg mb-4">Snelle Links</h4>
             <ul className="space-y-3">
               {[
-                { href: "#diensten", label: "Onze Diensten" },
-                { href: "#hoe-werkt-het", label: "Hoe Werkt Het" },
-                { href: "#pakketten", label: "Pakketten" },
-                { href: "#reviews", label: "Reviews" },
-                { href: "#contact", label: "Contact" },
+                { href: "/#diensten", label: "Onze Diensten" },
+                { href: "/#hoe-werkt-het", label: "Hoe Werkt Het" },
+                { href: "/#pakketten", label: "Pakketten" },
+                { href: "/#reviews", label: "Reviews" },
+                { href: "/#contact", label: "Contact" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link

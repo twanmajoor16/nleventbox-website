@@ -1,44 +1,35 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Check, AlertCircle, Lightbulb, PartyPopper, Sparkles, Gem, MapPin, Clock, Palette, Diamond } from "lucide-react";
+import { Lightbulb, PartyPopper, Gem, MapPin, Clock, Palette, Diamond } from "lucide-react";
 
 const packages = [
   {
     name: "Pakket 1",
     subtitle: "Standaard",
     icon: PartyPopper,
-    price: "500",
-    duration: "Max 4 uur",
-    description: "Keuze uit wit of zwart frame, inclusief ballonnen. Ideaal voor kleine feesten of korte events.",
+    price: "399",
+    priceLabel: "Vanaf €399,-",
+    kmPrice: "€0,35 per kilometer",
+    description: "Standaard template met een nette uitstraling. Alleen naam en datum op de box zijn te personaliseren.",
     features: [
-      "Basis template, nette uitstraling",
+      "Standaard template gekozen",
+      "Alleen naam en datum op de box te personaliseren",
     ],
     popular: false,
   },
   {
     name: "Pakket 2",
-    subtitle: "Meest populair",
-    icon: Sparkles,
-    price: "650",
-    duration: "Max 5 uur",
-    description: "Alles uit Pakket 1, plus persoonlijke tekst of logo op de Magazine Cover Box. Perfect voor wie iets extra's wil.",
-    features: [
-      "Personalisatie naar thema of stijl",
-      "Mogelijk om de titel aan te passen, plus maximaal 2 kleine details zoals naam en datum.",
-    ],
-    popular: true,
-  },
-  {
-    name: "Pakket 3",
     subtitle: "Op maat",
     icon: Gem,
-    price: "850",
-    duration: "Hele dag",
-    description: "Volledig gepersonaliseerde box, naar wens met alle extra materialen voor de hele avond. Geschikt voor bruiloften, bedrijfsevents of exclusieve feesten.",
+    price: null,
+    priceLabel: "Op maat gemaakt",
+    kmPrice: null,
+    description: "Volledig op maat. Alles is te personaliseren naar jullie wensen: thema, kleuren, logo en meer.",
     features: [
-      "Op maat gemaakt, premium ervaring",
+      "Alles te personaliseren",
+      "Ontwerp volledig afgestemd op jullie event",
     ],
-    popular: false,
+    popular: true,
   },
 ];
 
@@ -79,7 +70,7 @@ export function Packages() {
         </div>
 
         {/* Packages Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {packages.map((pkg) => (
             <div
               key={pkg.name}
@@ -106,14 +97,14 @@ export function Packages() {
 
                 <div className="mt-6">
                   <span className="font-serif text-4xl md:text-5xl font-semibold text-foreground">
-                    €{pkg.price}
+                    {pkg.priceLabel}
                   </span>
-                  <span className="text-muted-foreground ml-2">(excl. km)</span>
+                  {pkg.kmPrice && (
+                    <p className="text-sm text-muted-foreground mt-2">Kilometerprijs: {pkg.kmPrice}</p>
+                  )}
                 </div>
 
-                <p className="text-sm text-muted-foreground mt-2 mb-4">{pkg.duration}</p>
-
-                <p className="text-foreground leading-relaxed mb-6">{pkg.description}</p>
+                <p className="text-foreground leading-relaxed mt-4 mb-6">{pkg.description}</p>
 
                 <div className="space-y-3">
                   <p className="font-semibold text-foreground text-sm">Extra's:</p>

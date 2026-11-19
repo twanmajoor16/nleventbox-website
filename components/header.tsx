@@ -9,11 +9,11 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "#diensten", label: "Onze Diensten" },
-    { href: "#hoe-werkt-het", label: "Hoe Werkt Het" },
-    { href: "#pakketten", label: "Pakketten" },
-    { href: "#reviews", label: "Reviews" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#diensten", label: "Onze Diensten" },
+    { href: "/#hoe-werkt-het", label: "Hoe Werkt Het" },
+    { href: "/#pakketten", label: "Pakketten" },
+    { href: "/#reviews", label: "Reviews" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   return (
@@ -41,7 +41,7 @@ export function Header() {
 
           <div className="hidden lg:flex items-center gap-4">
             <Button asChild className="bg-foreground text-background hover:bg-foreground/90">
-              <Link href="#contact">Offerte Aanvragen</Link>
+              <Link href="/#contact">Offerte Aanvragen</Link>
             </Button>
           </div>
 
@@ -71,7 +71,7 @@ export function Header() {
                 </Link>
               ))}
               <Button asChild className="bg-foreground text-background hover:bg-foreground/90 mt-2">
-                <Link href="#contact" onClick={() => setIsMenuOpen(false)}>
+                <Link href="/#contact" onClick={() => setIsMenuOpen(false)}>
                   Offerte Aanvragen
                 </Link>
               </Button>

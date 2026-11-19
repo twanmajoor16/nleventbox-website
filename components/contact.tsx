@@ -416,7 +416,11 @@ export function Contact() {
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">
-                  Door te versturen ga je akkoord met onze privacyvoorwaarden.
+                  Door te versturen ga je akkoord met onze{" "}
+                  <a href="/privacyverklaring" className="underline hover:text-foreground">
+                    privacyverklaring
+                  </a>
+                  .
                 </p>
               </form>
           </div>

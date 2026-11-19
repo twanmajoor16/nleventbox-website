@@ -84,10 +84,10 @@ export function Footer() {
             © {new Date().getFullYear()} NL Eventbox. Alle rechten voorbehouden.
           </p>
           <div className="flex gap-6 text-sm text-background/50">
-            <Link href="/privacy" className="hover:text-gold transition-colors">
-              Privacybeleid
+            <Link href="/privacyverklaring" className="hover:text-gold transition-colors">
+              Privacyverklaring
             </Link>
-            <Link href="/voorwaarden" className="hover:text-gold transition-colors">
+            <Link href="/algemene-voorwaarden" className="hover:text-gold transition-colors">
               Algemene Voorwaarden
             </Link>
           </div>

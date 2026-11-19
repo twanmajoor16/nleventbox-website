@@ -79,7 +79,6 @@ export default function PrivacyverklaringPage() {
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground">
           Privacyverklaring
         </h1>
-        <p className="mt-3 text-sm text-muted-foreground">Versie: 19 november 2026</p>
         <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
           NL Eventbox gaat zorgvuldig om met je gegevens en gebruikt ze alleen om je aanvraag en je
           boeking af te handelen.

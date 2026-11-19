@@ -253,7 +253,6 @@ export default function AlgemeneVoorwaardenPage() {
         <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground">
           Algemene voorwaarden
         </h1>
-        <p className="mt-3 text-sm text-muted-foreground">Versie: 19 november 2026</p>
         <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
           Deze voorwaarden gelden voor elke offerte, boeking en verhuur van de Magazine Cover Box
           door NL Eventbox.
